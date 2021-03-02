@@ -1,15 +1,28 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace ToDoApplication {
     class Program {
 
-        void ListAllToDos() {
-            Cli.DisplayLine("Called ListAllTodos()'");
-        }
-        //GetAll
+        TTodosController todoCtrl = null;
+        CCategoriesController catCtrl = null;
 
-        void Run() {
-            Cli.DisplayLine("ToDo Application");
+        //Get All
+        async Task ListAllToDos() {
+            Cli.DisplayLine("Called ListAllTodos()'");
+            var todos = await todoCtrl.GetAll();
+            Console.WriteLine($"{ToDo.Header()}");
+            foreach (var todo in todos) {
+                Console.WriteLine($"{todo}");
+            }
+            Cli.DisplayLine();
+            Cli.DisplayLine("Finished");
+            Cli.DisplayLine();
+        }
+
+        //Create
+        async Task CreateToDo() {
+            Cli.DisplayLine("Called CreateTodo");
             var option = DisplayMenu();
             while (option != 0) {
                 switch (option) {
