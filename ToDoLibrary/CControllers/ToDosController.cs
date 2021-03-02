@@ -18,7 +18,9 @@ namespace ToDoLibrary.CControllers {
 
         //Get All 
         public async Task<IEnumerable<ToDo>> GetAll() {
-            return await _context.ToDos.ToListAsync();
+            return await _context.ToDos.
+                                        Include(x => x.Category)
+                                                .ToListAsync();
         }
 
         //Get by Primary Key
@@ -65,7 +67,7 @@ namespace ToDoLibrary.CControllers {
 
 
             // Delete / Remove
-            public async Task<Todo> Remove(int id) {
+            public async Task<ToDo> Remove(int id) {
                 var td = await _context.ToDos.FindAsync(id);
                 if(td == null) {
                     throw new Exception("Cannot be found");

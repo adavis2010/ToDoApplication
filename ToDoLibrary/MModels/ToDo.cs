@@ -21,8 +21,14 @@ namespace ToDoApplication {
         public virtual Category Category { get; set; }
 
         public override string ToString() {
-            return $"Id, {Description}, {Due}, {Category.Name}";
+            return $"{Id,5}| {"Description",-30}| {"Due",6:MMM dd}, {"Category.Name",-30}|";
+
         }
+         
+        public static string Header() {
+           return $"{"Id",5}| {"Description",-30}| {"Due",6:MMM dd}, {"Category.Name",-30}|"                 
+        }
+
 
 
     }

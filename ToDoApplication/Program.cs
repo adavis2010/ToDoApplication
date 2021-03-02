@@ -6,6 +6,7 @@ namespace ToDoApplication {
         void ListAllToDos() {
             Cli.DisplayLine("Called ListAllTodos()'");
         }
+        //GetAll
 
         void Run() {
             Cli.DisplayLine("ToDo Application");
