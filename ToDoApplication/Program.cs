@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace ToDoApplication {
     class Program {
 
-        TTodosController todoCtrl = null;
+        TodosController todoCtrl = null;
         CCategoriesController catCtrl = null;
 
         //Get All
