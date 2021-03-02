@@ -5,6 +5,10 @@ using System.Text;
 namespace ToDoApplication {
     public class Cli {
 
+        public static void DisplayLine(string prompt) {
+            Console.WriteLine($"{prompt}");
+        }
+
         public static DateTime? GetDateTime(string prompt) {
             var response = GetString(prompt);
             if(response.Length == 0) {
