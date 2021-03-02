@@ -5,7 +5,7 @@ using System.Text;
 namespace ToDoApplication {
     public class Cli {
 
-        public static void DisplayLine(string prompt) {
+        public static void DisplayLine(string prompt = null) {
             Console.WriteLine($"{prompt}");
         }
 

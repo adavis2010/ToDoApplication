@@ -15,6 +15,11 @@ namespace ToDoApplication {
                     case 1:
                         ListAllToDos();
                         break;
+                    case 0:
+                        return;
+                    default:
+                        Cli.DisplayLine("Invalid menu option");
+                        break;
                 }
                 option = DisplayMenu();
             }
