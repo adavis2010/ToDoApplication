@@ -1,26 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 using ToDoApplication;
-using ToDoApplication.Models;
 
 namespace ToDoLibrary.CControllers {
     public class ToDosController {
-        private readonly AppDbContext _context;
+        private readonly DbContext _context;
 
         //default constructor
         public ToDosController() {
-            _context = new AppDbContext();
+            _context = new TodoDbContext();
         }
 
         //Get All 
         public async Task<IEnumerable<ToDo>> GetAll() {
-            return await _context.ToDos.
-                                        Include(x => x.Category)
-                                                .ToListAsync();
+            return await _context.ToDos
+                                        .Include(x => x.Category)
+                                        .ToListAsync();
         }
 
         //Get by Primary Key

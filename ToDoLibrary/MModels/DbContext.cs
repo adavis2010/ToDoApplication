@@ -2,25 +2,26 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToDoApplication;
 
-namespace ToDoApplication.Models  {
+namespace ToDoLib.Models {
 
     // Inherit from DB Context
-    public class AppDbContext : DbContext {
+    public class DbContext : Microsoft.EntityFrameworkCore.DbContext {
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<Category> Categories { get; set; }
 
 
         //default constructor
-        public AppDbContext() { }
+        public DbContext() { }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder) {
 
             if (!builder.IsConfigured) {
-                //build connection string fro Sql server
+                //build connection string for Sql server
                 var connStr = "server=localhost\\sqlexpress;" +
-                                "database=AppDbToDo;" +
+                                "database=ToDo;" +
                                 "trusted_connection=true;";
                 //pass in connection string
                 builder.UseSqlServer(connStr);
@@ -28,11 +29,11 @@ namespace ToDoApplication.Models  {
         }
 
 
-        protected override void OnModelCreating(ModelBuilder builder) {
-
-
-
+        protected override void OnModelCreating(ModelBuilder builder) { 
+        
         }
 
     }
+
+
 }

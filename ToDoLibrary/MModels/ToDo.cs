@@ -26,7 +26,7 @@ namespace ToDoApplication {
         }
          
         public static string Header() {
-           return $"{"Id",5}| {"Description",-30}| {"Due",6:MMM dd}, {"Category.Name",-30}|"                 
+            return $"{"Id",5}| {"Description",-30}| {"Due",6:MMM dd}, {"Category.Name",-30}|";                
         }
 
 

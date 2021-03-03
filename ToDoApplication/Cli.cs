@@ -7,13 +7,24 @@ namespace ToDoApplication {
 
         public static void DisplayLine(string prompt = null) {
             Console.WriteLine($"{prompt}");
+
+        }
+
+        public static bool GetBoolean(string prompt) {
+            var response = GetString(prompt);
+            if (response.Length == 0) {
+                return false;
+            }
+            return "y|Y|yes|YES|1|t|T|true|True|TRUE".Contains($"|{response}|") ? true : false;
         }
 
         public static DateTime? GetDateTime(string prompt) {
             var response = GetString(prompt);
             if(response.Length == 0) {
                 return null;
+
             }
+
                 return Convert.ToDateTime(response);
         }
 
