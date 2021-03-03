@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using ToDoApplication;
+using ToDoLib.Models;
 
 namespace ToDoLibrary.CControllers {
     public class ToDosController {
-        private readonly DbContext _context;
+        private readonly TodoDbContext _context;
 
         //default constructor
         public ToDosController() {
-            _context = new ToDoDbContext();
+            _context = new TodoDbContext();
         }
 
         //Get All 
@@ -41,45 +42,41 @@ namespace ToDoLibrary.CControllers {
                 throw new Exception("Create Failed");
             }
             return todo;
+        }
 
-
-            //Update / Change
-            public async Task Change(ToDo todo) {
-                if (todo == null) {
-                    throw new Exception("Input cannot be null");
-                }
-                _context.Entry(todo).State = EntityState.Modified;
-                var rowsAffected = await _context.SaveChangesAsync();
-                if (rowsAffected != 1) {
-                    throw new Exception("Input cannot be null");
-                }
-                if (todo.Id == 0) {
-                    throw new Exception("Input must have Id greater than zero");
-                }
-                _context.Entry(todo).State = EntityState.Modified;
-                var rowssAffected = await _context.SaveChangesAsync();
-                    if (rowsAffected != 1) {
-                    throw new Exception("Change Failed");
-                    }
+        //Update / Change
+        public async Task Change(ToDo todo) {
+            if (todo == null) {
+                throw new Exception("Input cannot be null");
             }
-
-
-            // Delete / Remove
-            public async Task<ToDo> Remove(int id) {
-                var td = await _context.ToDos.FindAsync(id);
-                if(td == null) {
-                    throw new Exception("Cannot be found");
-                }
-                _context.ToDos.Remove(todo);
-                var rowsAffected = await _context.SaveChangesAsync();
-                if (rowsAffected != 1) {
-                    throw new Exception("Remove Failed");
-                }
-                return td;
-
-
+            _context.Entry(todo).State = EntityState.Modified;
+            var rowsAffected = await _context.SaveChangesAsync();
+            if (rowsAffected != 1) {
+                throw new Exception("Input cannot be null");
             }
+            if (todo.Id == 0) {
+                throw new Exception("Input must have Id greater than zero");
+            }
+            _context.Entry(todo).State = EntityState.Modified;
+            var rowssAffected = await _context.SaveChangesAsync();
+            if (rowsAffected != 1) {
+                throw new Exception("Change Failed");
+            }
+        }
 
+
+        // Delete / Remove
+        public async Task<ToDo> Remove(int id) {
+            var td = await _context.ToDos.FindAsync(id);
+            if (td == null) {
+                throw new Exception("Cannot be found");
+            }
+            _context.ToDos.Remove(td);
+            var rowsAffected = await _context.SaveChangesAsync();
+            if (rowsAffected != 1) {
+                throw new Exception("Remove Failed");
+            }
+            return td;
 
 
         }
@@ -90,5 +87,9 @@ namespace ToDoLibrary.CControllers {
 
 
 
-
 }
+
+
+
+
+

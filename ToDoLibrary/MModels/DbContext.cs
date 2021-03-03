@@ -7,13 +7,14 @@ using ToDoApplication;
 namespace ToDoLib.Models {
 
     // Inherit from DB Context
-    public class DbContext : Microsoft.EntityFrameworkCore.DbContext {
+    public class TodoDbContext : Microsoft.EntityFrameworkCore.DbContext {
+
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<Category> Categories { get; set; }
 
 
         //default constructor
-        public DbContext() { }
+        public TodoDbContext() { }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder) {

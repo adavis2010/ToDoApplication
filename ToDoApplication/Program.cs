@@ -25,16 +25,16 @@ namespace ToDoApplication {
         async Task CreateToDo() {
             Cli.DisplayLine("Called CreateTodo()");
             Cli.DisplayLine();
-            var categories = await catCtrl.GetAll();
+            //var categories = await catCtrl.GetAll();
             var todo = new ToDo();
             todo.Id = 0;
             todo.Description = Cli.GetString("Enter description");
             todo.Due = Cli.GetDateTime("Enter due date");
             todo.Note = Cli.GetString("Enter note");
-            Cli.DisplayLine("Categories:");
-            foreach (var c in categories) {
-                Cli.DisplayLine("{c.Id} : {c.Name}");
-            }
+            //Cli.DisplayLine("Categories:");
+            //foreach (var c in categories) {
+            //    Cli.DisplayLine("{c.Id} : {c.Name}");
+            //}
             todo.CategoryId = Cli.GetInt("Select category");
             var newTodo = await todoCtrl.Create(todo);
             Cli.DisplayLine();
@@ -48,7 +48,7 @@ namespace ToDoApplication {
             Cli.DisplayLine("List of todo items");
             Cli.DisplayLine();
             var todos = await todoCtrl.GetAll();
-            Console.WriteLine($"{todo}");
+            Console.WriteLine($"{todos}");
             foreach (var todo in todos) {
                 Console.WriteLine($"{todo}");
             }
@@ -74,11 +74,12 @@ namespace ToDoApplication {
                 todo1.Note = Cli.GetString($"Note - new value:");
             }
             await todoCtrl.Change(todo1);
+        }
 
-            async Task Run() { }
-            todoCtrl = new TodosController();
-            catCtrl = new CategoriesController();
-            Cli.DisplayLine("Todo Application");
+        async Task Run() { 
+        todoCtrl = new ToDosController();
+        catCtrl = new CategoriesController();
+        Cli.DisplayLine("Todo Application");
             var option = DisplayMenu();
             while (option != 0) {
                 switch (option) {
@@ -97,24 +98,24 @@ namespace ToDoApplication {
                         Cli.DisplayLine("Invalid menu option");
                         break;
                 }
-                option = DisplayMenu();
+    option = DisplayMenu();
 
 
 
-            }
+}
         }
         int DisplayMenu() {
-            Cli.DisplayLine("Menu");
-            Cli.DisplayLine("1 : List all todos");
-            Cli.DisplayLine("2 : Add todo");
-            Cli.DisplayLine("3: Update todo");
-            Cli.DisplayLine("0: Exit");
-            var option = Cli.GetInt("Enter menu number");
-            return option;
-        }
-        static async Task Main(string[] args) {
-            var pgm = new Program();
-            await pgm.Run();
+    Cli.DisplayLine("Menu");
+    Cli.DisplayLine("1 : List all todos");
+    Cli.DisplayLine("2 : Add todo");
+    Cli.DisplayLine("3: Update todo");
+    Cli.DisplayLine("0: Exit");
+    var option = Cli.GetInt("Enter menu number");
+    return option;
+}
+static async Task Main(string[] args) {
+    var pgm = new Program();
+    await pgm.Run();
 
 
 
@@ -122,6 +123,6 @@ namespace ToDoApplication {
 
 
 
-        }
+}
     }
 }
