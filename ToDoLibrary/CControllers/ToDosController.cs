@@ -11,7 +11,7 @@ namespace ToDoLibrary.CControllers {
 
         //default constructor
         public ToDosController() {
-            _context = new TodoDbContext();
+            _context = new ToDoDbContext();
         }
 
         //Get All 
